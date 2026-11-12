@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestor de Finanzas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-white text-gray-800 p-6 max-w-3xl mx-auto space-y-8">
+
+    
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 border-b pb-6 text-center md:text-left">
+        <div>
+            <h3 class="text-xs uppercase tracking-wide text-gray-500 font-medium">Ingresos totales</h3>
+            <p id="ingresos-totales" class="text-xl font-bold text-emerald-600 mt-1">$0</p>
+        </div>
+
+        <div>
+            <h3 class="text-xs uppercase tracking-wide text-gray-500 font-medium">Gastos totales</h3>
+            <p id="gastos-totales" class="text-xl font-bold text-rose-600 mt-1">$0</p>
+        </div>
+
+        <div>
+            <h3 class="text-xs uppercase tracking-wide text-gray-500 font-medium">Balance neto</h3>
+            <p id="balance-neto" class="text-xl font-bold text-gray-900 mt-1">$0</p>
+        </div>
+    </div>
+
+    
+    <form id="formulario" class="flex flex-wrap items-end gap-3 border-b pb-6">
+        <div class="flex flex-col flex-1 min-w-[150px]">
+            <label for="descripcion" class="text-xs text-gray-600 mb-1">Descripción</label>
+            <input class="border border-gray-300 rounded px-3 py-1.5 text-sm focus:outline-none focus:border-gray-500" type="text" id="descripcion" placeholder="Ej: compra de una pc gamer">
+        </div>
+
+        <div class="flex flex-col w-28">
+            <label for="monto" class="text-xs text-gray-600 mb-1">Monto</label>
+            <input class="border border-gray-300 rounded px-3 py-1.5 text-sm focus:outline-none focus:border-gray-500" type="number" id="monto" placeholder="Ej: 1000" min="0.01" step="0.01" required>
+        </div>
+
+        <div class="flex flex-col w-28">
+            <label for="tipo" class="text-xs text-gray-600 mb-1">Tipo</label>
+            <select class="border border-gray-300 rounded px-3 py-1.5 text-sm focus:outline-none focus:border-gray-500 bg-white" id="tipo">
+                <option value="ingreso">Ingreso</option>
+                <option value="gasto">Gasto</option>
+            </select>
+        </div>
+
+        <div class="flex flex-col w-32">
+            <label for="categoria" class="text-xs text-gray-600 mb-1">Categoría</label>
+            <select class="border border-gray-300 rounded px-3 py-1.5 text-sm focus:outline-none focus:border-gray-500 bg-white" id="categoria">
+                <option value="sueldo">Sueldo</option>
+                <option value="comida">Comida</option>
+                <option value="transporte">transporte</option>
+                <option value="otros">otros</option>
+            </select>
+        </div>
+
+        <div>
+            <label for="fecha">fecha</label>
+            <input type="date" id="fecha" required placeholder="EJ: 12-11-26">
+        </div>
+
+        <button type="submit" class="bg-gray-800 hover:bg-gray-900 text-white rounded px-4 py-1.5 text-sm transition-colors">Agregar</button>
+    </form>
+
+    
+    <div>
+        <table class="w-full text-left text-sm">
+            <thead>
+                <tr class="border-b text-gray-400 font-normal">
+                    <th class="pb-2 font-normal">Descripción</th>
+                    <th class="pb-2 font-normal">Categoría</th>
+                    <th class="pb-2 font-normal">Monto</th>
+                    <th class="pb-2 font-normal text-right">Fecha</th>
+                    <th class="pb-2 font-normal text-right">Acción</th>
+                </tr>
+            </thead>
+            <tbody id="historial"></tbody>
+        </table>
+    </div>
+
+    
+    <div class="pt-4">
+        <h1 class="text-sm font-semibold text-gray-700 mb-3">Resumen por categorías</h1>
+        <canvas id="grafico-barras"></canvas>
+    </div>
+
+    <div class="pt-4">
+    <h1 class="text-sm font-semibold text-gray-700 mb-3">Grafico de linea</h1>
+    <canvas id="grafico-lineas"></canvas>
+    </div>
+
+    <script type="module" src="index.js"></script>
+</body>
+</html>
